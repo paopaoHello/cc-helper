@@ -52,9 +52,9 @@ Write-Host "Creating configuration file: $settingsFile" -ForegroundColor Yellow
 #     exit 1
 # }
 
-# Use .NET method to save UTF-8
+# Use .NET method to save UTF-8 without BOM
 try {
-    $fileStream = [System.IO.StreamWriter]::new($settingsFile, $false, [System.Text.Encoding]::UTF8)
+    $fileStream = [System.IO.StreamWriter]::new($settingsFile, $false, [System.Text.UTF8Encoding]::new($false))
     $fileStream.Write($jsonContent)
     Write-Host "✓ Configuration file created successfully" -ForegroundColor Green
 } catch {
