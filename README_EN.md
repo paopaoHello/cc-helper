@@ -2,27 +2,34 @@
 
 [中文](README.md) | **English**
 
-Power your Claude Code with the latest Zhipu AI model (GLM-4.5).
+Power your Claude Code with the latest models from Zhipu AI (GLM-4.5) and Moonshot AI (Kimi K2).
 
-Free trial: [Experience Zhipu GLM-4.5 - The Most Powerful Flagship Model](https://bigmodel.cn/trialcenter/modeltrial/text)
+GLM-4.5 free trial: [Try GLM-4.5 for Free](https://bigmodel.cn/trialcenter/modeltrial/text)
+Kimi K2 free trial: [Try Kimi K2 for Free](https://www.kimi.com/)
 
 ## Quick Installation
 
-1. Apply for an API Key at the Zhipu AI Open Platform.
+1. Apply for API Key
 
-Visit: [Zhipu AI Open Platform](https://open.bigmodel.cn/)
+Get your API Key from Zhipu AI Open Platform
 
-Top right corner -> Personal Center -> Project Management -> API keys -> Add new API Key
+Click here: [Zhipu AI Open Platform](https://open.bigmodel.cn/)
 
-2. Quick installation
+Top right corner: Personal Center -> Project Management -> API keys -> Add new API Key
 
-### Windows Platform
+Get your API Key from Moonshot AI Open Platform
+
+Click here: [Moonshot AI Open Platform](https://platform.moonshot.cn/)
+
+Top right corner: User Center -> Organization Management -> API Key Management -> Create new API Key
+
+2. Quick Installation
 
 - Install Node.js
 
-Download installer: [nodejs windows x64 installer](https://nodejs.org/dist/v22.17.1/node-v22.17.1-x64.msi)
+Installation methods vary by platform (Windows, Linux, Mac). Please refer to [Node.js official website](https://nodejs.org/en/download)
 
-Verify installation success:
+Verify successful installation:
 ```
 node --version
 npm --version
@@ -34,13 +41,20 @@ npm --version
 npm install -g @anthropic-ai/claude-code
 ```
 
-- Set up GLM API Key
+- Run installation script to configure API Key (run different scripts for different platforms)
 
 ```
+# Windows
 .\install-win.ps1
+
+# Linux
+./install-linux.sh
+
+# Mac
+./install-mac.sh
 ```
 
-The script will prompt you to enter your API Key
+The installation script will first prompt you to choose between GLM or Kimi, then ask for your API Key (input is hidden for security)
 
 - Start using Claude Code at low cost
 
