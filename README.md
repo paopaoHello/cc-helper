@@ -1,4 +1,4 @@
-# GLM CC
+# Claude Code Helper
 
 **中文** | [English](README_EN.md)
 
