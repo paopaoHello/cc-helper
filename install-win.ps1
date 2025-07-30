@@ -43,8 +43,9 @@ Write-Host "✓ Selected: $(if ($choice -eq "1") { "GLM" } else { "Kimi" })" -Fo
 
 # Prompt user for ANTHROPIC_AUTH_TOKEN
 Write-Host ""
-Write-Host "Please enter your API Key:" -ForegroundColor Cyan
-$token = Read-Host
+Write-Host "Please enter your API Key (input will be hidden):" -ForegroundColor Cyan
+$secureString = Read-Host -AsSecureString
+$token = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto([System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($secureString))
 
 # Validate token is not empty
 if ([string]::IsNullOrWhiteSpace($token)) {
@@ -62,8 +63,8 @@ ANTHROPIC_AUTH_TOKEN = $token
 
 # Write to file
 $settingsFile = Join-Path $claudeDir "settings.json"
-Write-Host ""
-Write-Host "Creating configuration file: $settingsFile" -ForegroundColor Yellow
+# Write-Host ""
+# Write-Host "Creating configuration file: $settingsFile" -ForegroundColor Yellow
 
 # use this way to save settings.json result in UTF-8-BOM which Claude Code cannot read
 # try {
@@ -78,9 +79,9 @@ Write-Host "Creating configuration file: $settingsFile" -ForegroundColor Yellow
 try {
     $fileStream = [System.IO.StreamWriter]::new($settingsFile, $false, [System.Text.UTF8Encoding]::new($false))
     $fileStream.Write($jsonContent)
-    Write-Host "✓ Configuration file created successfully" -ForegroundColor Green
+    # Write-Host "✓ Configuration file created successfully" -ForegroundColor Green
 } catch {
-    Write-Host "✗ Configuration file creation failed" -ForegroundColor Red
+    # Write-Host "✗ Configuration file creation failed" -ForegroundColor Red
     exit 1
 } finally {
     if ($fileStream) {
@@ -89,11 +90,11 @@ try {
 }
 
 # Display file content
-Write-Host ""
-Write-Host "Configuration file content:" -ForegroundColor Cyan
-Write-Host "-------------------"
-Get-Content $settingsFile
-Write-Host "-------------------"
+# Write-Host ""
+# Write-Host "Configuration file content:" -ForegroundColor Cyan
+# Write-Host "-------------------"
+# Get-Content $settingsFile
+# Write-Host "-------------------"
 
 Write-Host ""
 Write-Host "✓ Installation completed! Claude configuration has been successfully set up." -ForegroundColor Green
