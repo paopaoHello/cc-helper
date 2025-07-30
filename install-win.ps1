@@ -6,18 +6,40 @@ Write-Host "=============================" -ForegroundColor Green
 
 # Get user home directory
 $homeDir = $env:USERPROFILE
-Write-Host "User home directory: $homeDir" -ForegroundColor Yellow
+# Write-Host "User home directory: $homeDir" -ForegroundColor Yellow
 
 # Create .claude directory
 $claudeDir = Join-Path $homeDir ".claude"
-Write-Host "Creating directory: $claudeDir" -ForegroundColor Yellow
+# Write-Host "Creating directory: $claudeDir" -ForegroundColor Yellow
 
 if (-not (Test-Path $claudeDir)) {
     New-Item -ItemType Directory -Path $claudeDir -Force | Out-Null
-    Write-Host "✓ Directory created successfully" -ForegroundColor Green
+    # Write-Host "✓ Directory created successfully" -ForegroundColor Green
 } else {
-    Write-Host "✓ Directory already exists" -ForegroundColor Green
+    # Write-Host "✓ Directory already exists" -ForegroundColor Green
 }
+
+# Prompt user for API provider choice
+Write-Host ""
+Write-Host "Please select your API provider:" -ForegroundColor Cyan
+Write-Host "1. GLM (Zhipu)" -ForegroundColor Yellow
+Write-Host "2. Kimi (Moonshot)" -ForegroundColor Yellow
+$choice = Read-Host "Enter your choice (1 or 2)"
+
+# Validate choice
+while ($choice -ne "1" -and $choice -ne "2") {
+    Write-Host "Error: Please enter 1 for GLM or 2 for Kimi" -ForegroundColor Red
+    $choice = Read-Host "Enter your choice (1 or 2)"
+}
+
+# Set BASE_URL based on choice
+$baseUrl = if ($choice -eq "1") {
+    "https://open.bigmodel.cn/api/anthropic/"
+} else {
+    "https://api.moonshot.cn/anthropic/"
+}
+
+Write-Host "✓ Selected: $(if ($choice -eq "1") { "GLM" } else { "Kimi" })" -ForegroundColor Green
 
 # Prompt user for ANTHROPIC_AUTH_TOKEN
 Write-Host ""
@@ -33,7 +55,7 @@ if ([string]::IsNullOrWhiteSpace($token)) {
 # Create settings.json content
 $jsonContent = @{
 env = @{
-ANTHROPIC_BASE_URL = "https://open.bigmodel.cn/api/anthropic/"
+ANTHROPIC_BASE_URL = $baseUrl
 ANTHROPIC_AUTH_TOKEN = $token
 }
 } | ConvertTo-Json -Depth 10
