@@ -5,6 +5,7 @@
 使用智谱最新模型（GLM-4.5），Moonshot最新模型（Kimi K2）驱动您的 Claude Code。
 
 GLM-4.5免费体验地址：[免费体验 GLM-4.5](https://bigmodel.cn/trialcenter/modeltrial/text)
+
 Kimi K2免费体验地址：[免费体验 Kimi K2](https://www.kimi.com/)
 
 ## 快速安装

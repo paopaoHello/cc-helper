@@ -5,6 +5,7 @@
 Power your Claude Code with the latest models from Zhipu AI (GLM-4.5) and Moonshot AI (Kimi K2).
 
 GLM-4.5 free trial: [Try GLM-4.5 for Free](https://bigmodel.cn/trialcenter/modeltrial/text)
+
 Kimi K2 free trial: [Try Kimi K2 for Free](https://www.kimi.com/)
 
 ## Quick Installation
